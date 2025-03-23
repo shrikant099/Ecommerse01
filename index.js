@@ -4,7 +4,6 @@ import cors from "cors";
 import { fileURLToPath } from "url";
 import { connect_db } from "./db-connection/db_connection.js";
 import { loginUser, registerController } from "./controllers/user.controller.js";
-
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

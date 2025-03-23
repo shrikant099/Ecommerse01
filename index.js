@@ -17,9 +17,7 @@ app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "./index.html"));
 });
 
-app.get("/about" , (res , req) => {
-    res.send("shrikant soni")
-})
+
 
 
 app.post('/api/register-user' , registerController);

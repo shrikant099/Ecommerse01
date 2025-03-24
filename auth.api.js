@@ -1,3 +1,8 @@
+function isValidEmail(email) {
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailPattern.test(email);
+}
+
 document.addEventListener("DOMContentLoaded", (event) => {
     const registerForm = document.querySelector("#signUpForm");
     registerForm.addEventListener("submit", async (e) => {
@@ -8,8 +13,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
         const number = document.querySelector("#number").value.trim()
         const password = document.querySelector("#password").value.trim()
 
-        console.log(username);
-        
+        //  console.log(username);
+
         if (!username || !email || !number || !password) {
             console.log("Please fill all fields");
             return;
@@ -20,6 +25,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
             email,
             number,
             password
+        };
+
+        if(!isValidEmail(email)){
+            alert("Invalid email format Please try again ");
+            return;
         };
         
 
@@ -32,9 +42,36 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 body: JSON.stringify(formData)
             });
 
-            console.log("Response Status:", registerFetchApi.status); // Check response status
+            //console.log("Response Status:", registerFetchApi.status); // Check response status
 
             const data = await registerFetchApi.json();
+
+
+            if (data.message === "User Already ragisterd") {
+                alert("Email or Username Already Ragisterd ! ");
+                return;
+            }
+
+            if (data.message === "Invalid email format Please try again") {
+                alert("Invalid email format Please try again ");
+                return;
+            }
+
+            if (data.message === "Number is Not a valid format") {
+                alert("Number is Not a valid format");
+                return;
+            }
+
+            if (data.message === "Error Please Enter all fileds") {
+                alert("Error Please Enter all fileds");
+                return;
+            }
+
+            if (data.message === "Invalid email format Please try again") {
+                alert("Invalid email format Please try again ");
+                return;
+            }
+
 
             if (!data.success) {
                 console.log(`Error please try again`);

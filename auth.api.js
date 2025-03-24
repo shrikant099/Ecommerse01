@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 return;
             };
 
-
+            alert("ragistration succesfull")
 
         } catch (error) {
             console.log(`Error: ${error.message}`);
